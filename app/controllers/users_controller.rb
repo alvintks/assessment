@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      redirect_to user_postings_path(current_user)
+      redirect_to user_postings_path(current_user.id)
     else
       @error = @user.errors.full_messages
       respond_to do |format|
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end
 
