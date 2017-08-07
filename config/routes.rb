@@ -4,8 +4,16 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   resources :users, controller: "users" do 
-    resources :postings, controller: "postings" do 
+    resources :postings, controller: "postings" do
       resources :comments, controller: "comments", only: [:new, :create]
+    end 
+  end 
+
+  resources :admins, controller: "admins", only: [:destroy, :index]
+
+    resources :postings, controller: "postings" do
+    member do
+      put "like", to: "postings#upvote"
     end 
   end 
 

@@ -28,6 +28,15 @@ class PostingsController < ApplicationController
     end
   end
 
+  def upvote
+    @posting = Posting.find(params[:id])
+    @posting.upvote_by current_user
+    respond_to do |format|
+    format.html { redirect_to user_postings_url(current_user.id), notice: 'Like was increased.' }
+    format.js { }
+    end 
+  end 
+
  
 private 
   def posting_params 

@@ -1,0 +1,8 @@
+<% @postings.each do |t| %>
+  <%= image_tag t.image_url %>
+  <b><p> description </p></b>
+  <%= t.description %>
+  <%= link_to "delete this", admin_path(t), :method => :delete %><br>
+<% end %>
+
+<li><%= link_to "Back to user index", user_postings_path(current_user) %></li>
