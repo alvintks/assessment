@@ -7,7 +7,6 @@ class SessionsController < ApplicationController
     else
       flash[:notice] = "Invalid email/password"
       respond_to do |format|
-        format.js
         format.html { render template: "sessions/new" }
       end
     end

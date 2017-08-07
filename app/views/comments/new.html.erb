@@ -1,0 +1,6 @@
+<%= form_for [current_user, @posting, @comment] do |form| %>
+      <%= form.text_area :description, type: 'text', placeholder: 'comment here', required: true %>
+      <%= form.submit %>
+<% end %>
+
+ <%= button_to 'Back', user_postings_path(current_user), :method => :get %>
