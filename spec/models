@@ -1,0 +1,51 @@
+require "rails_helper"
+
+RSpec.describe User, :type => :model do
+  subject { described_class.new(name: "alvin", email: "hello@test.com", password: "1234") }
+
+  describe "Validations" do
+    it "is valid with valid attributes" do
+      expect(subject).to be_valid
+    end
+
+    it "is not valid without a password" do
+      subject.password = nil
+      expect(subject).to_not be_valid
+    end
+
+    it "is not valid without an email" do
+      subject.email = nil
+      expect(subject).to_not be_valid
+    end
+  end
+
+  describe "Associations" do 
+    it "has many postings" do  
+      assc = described_class.reflect_on_association(:postings)
+      expect(assc.macro).to eq :has_many
+    end 
+  end 
+
+  # describe User, ".search" do 
+  #   it "is able to search through name" do 
+  #     search_result = 
+  # end 
+end
+
+RSpec.describe Posting, :type => :model do
+  t = User.create(name: "alvin", email: "hello@test.com", password: "1234")
+  subject { described_class.new(description: "testing", user_id: t.id, image: "some_image.jpg", address: "The Next Academy, Damansara, Malaysia") }
+
+  describe "Validations" do
+    it "is valid with valid attributes" do
+      expect(subject).to be_valid
+    end
+  end 
+
+  describe "Associations" do 
+    it "belongs to a user" do  
+      assc = described_class.reflect_on_association(:user)
+      expect(assc.macro).to eq :belongs_to
+    end 
+  end 
+end

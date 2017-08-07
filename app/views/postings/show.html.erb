@@ -1,0 +1,6 @@
+<h2>this is the show page for the map</h2>
+
+
+<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@posting.latitude},#{@posting.longitude}&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C#{@posting.latitude},#{@posting.longitude}&key=#{ENV['GOOGLE_API_KEY']}" %>
+
+<li><%= link_to "Back to user index", user_postings_path %></li>

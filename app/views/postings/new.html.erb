@@ -1,0 +1,17 @@
+<%= form_for @posting, url: user_postings_path, html: {method: :post} do |f| %>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+  <%= f.label :address %><br />
+  <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.file_field :image %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+
+
+<li><%= link_to "Back to user index", user_postings_path %></li>
